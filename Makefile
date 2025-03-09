@@ -1,6 +1,6 @@
 NAME = mini_shell
 
-SRCS = main.c
+SRCS = main.c ft_split.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -14,7 +14,8 @@ $(NAME) : $(OBJS)
 	$(CC) $(FLAGS) -o $(NAME) $(OBJS) -lreadline
 
 %.o: %.c mini_shell.h
-	$(CC) $(FLAGS) -c $< -o $@ -lreadline
+	$(CC) $(FLAGS) -c $< -o $@
+ #-lreadline
 
 clean :
 	rm -rf $(OBJS)
