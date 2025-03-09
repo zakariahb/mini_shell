@@ -11,10 +11,10 @@ FLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJS) -lreadline
 
 %.o: %.c mini_shell.h
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@ -lreadline
 
 clean :
 	rm -rf $(OBJS)
