@@ -6,7 +6,7 @@
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:49:50 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/09 10:56:17 by zalaksya         ###   ########.fr       */
+/*   Updated: 2025/03/09 14:51:02 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-int find_qoute(char *str, char c)
+void find_qoute(char *str, t_shell *input)
 {
 	int	i;
 	int	j;
@@ -31,8 +31,8 @@ int find_qoute(char *str, char c)
 	j = 0;
 	while(str[i])
 	{
-		if (str[i] == c)
-		{
+		if (str[i] == '|' && str[i + 1] == '|' && str[i + 2] != '|')
+			input->or += 1;
 			j++;
 			if (j == 2)
 				return (0);	
@@ -47,12 +47,12 @@ int find_qoute(char *str, char c)
 int check_user_input(char **ar)
 {
 	int	i;
-
+	t_shell *input;
 	i = 0;
 	while(ar[i])
 	{
 		printf("ar[%d]	:%s\n", i, ar[i]);
-		if (find_qoute(ar[i], '\'') || find_qoute(ar[i], '\"') || !ft_strcmp(ar[i], "<>") || !ft_strcmp(ar[i], "|||"))
+		if (find_qoute(ar[i], input))
 			return (1);
 		i++;
 	}

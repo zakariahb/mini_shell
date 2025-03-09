@@ -6,7 +6,7 @@
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:41:54 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/09 11:52:29 by zalaksya         ###   ########.fr       */
+/*   Updated: 2025/03/09 14:41:45 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@
 typedef struct s_shell
 {
 	int pipe;
-	int penthesises;
-	int qoute;
+	int	or;
+	int o_prts;
+	int c_prts;
+	int s_qoute;
+	int d_qoute;
 	
 } t_shell;
 
