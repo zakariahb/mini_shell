@@ -6,7 +6,7 @@
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:49:50 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/13 09:44:08 by zalaksya         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:49:41 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,12 @@ int	ft_strcmp(char *s1, char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-
+void create_tokens(t_shell *input, char *str)
+{
+	if (!ft_strcmp(input->type, "PIPE"))
+		input->type->value = ft_strdu[]
+	
+}
 void tokenazation(char *str, t_shell *input)
 {
 	int	i;
@@ -83,3 +88,7 @@ int main (void)
 	// 	return (1);
 	return (0);
 }
+
+
+
+
