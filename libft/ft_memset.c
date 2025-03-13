@@ -1,44 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_shell.h                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 14:41:54 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/13 08:55:20 by zalaksya         ###   ########.fr       */
+/*   Created: 2024/10/23 15:35:06 by zalaksya          #+#    #+#             */
+/*   Updated: 2024/11/14 09:09:20 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_SHELL_H
-#define MINI_SHELL_H
+#include "libft.h"
 
-
-#include "unistd.h"
-#include "string.h"
-#include "stdlib.h"
-#include "readline/readline.h"
-
-typedef enum e_token_type
+void	*ft_memset(void *str, int c, size_t n)
 {
-	WORD,
-	PIPE,
-	R_OUT,
-	R_IN,
-	AEPPEND,
-	HERDOK
-}	t_token_type;
+	size_t			i;
+	unsigned char	*pc;
 
-typedef struct s_token {
-    t_token_type type;
-    char *value;
-} t_token;
-
-typedef struct s_shell
-{
-	t_token *type;	
-} t_shell;
-
-char	**ft_split(char const *s, char c);
-
-#endif
+	i = 0;
+	pc = (unsigned char *)str;
+	while (i < n)
+	{
+		pc[i++] = (unsigned char)c;
+	}
+	return (str);
+}

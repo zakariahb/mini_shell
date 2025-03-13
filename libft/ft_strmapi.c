@@ -1,44 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_shell.h                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 14:41:54 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/13 08:55:20 by zalaksya         ###   ########.fr       */
+/*   Created: 2024/11/06 17:11:05 by zalaksya          #+#    #+#             */
+/*   Updated: 2024/11/20 11:52:10 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_SHELL_H
-#define MINI_SHELL_H
+#include "libft.h"
 
-
-#include "unistd.h"
-#include "string.h"
-#include "stdlib.h"
-#include "readline/readline.h"
-
-typedef enum e_token_type
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	WORD,
-	PIPE,
-	R_OUT,
-	R_IN,
-	AEPPEND,
-	HERDOK
-}	t_token_type;
+	int		i;
+	int		len;
+	char	*p;
 
-typedef struct s_token {
-    t_token_type type;
-    char *value;
-} t_token;
-
-typedef struct s_shell
-{
-	t_token *type;	
-} t_shell;
-
-char	**ft_split(char const *s, char c);
-
-#endif
+	i = 0;
+	if (!s)
+		return (NULL);
+	if (!f)
+		return (ft_strdup(s));
+	len = ft_strlen(s);
+	p = malloc(len + 1);
+	if (!p)
+		return (NULL);
+	while (s[i])
+	{
+		p[i] = (*f)(i, s[i]);
+		i++;
+	}
+	p[i] = '\0';
+	return (p);
+}

@@ -1,44 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_shell.h                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 14:41:54 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/13 08:55:20 by zalaksya         ###   ########.fr       */
+/*   Created: 2024/11/07 18:16:56 by zalaksya          #+#    #+#             */
+/*   Updated: 2024/11/14 09:08:17 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_SHELL_H
-#define MINI_SHELL_H
+#include "libft.h"
 
-
-#include "unistd.h"
-#include "string.h"
-#include "stdlib.h"
-#include "readline/readline.h"
-
-typedef enum e_token_type
+void	ft_putnbr_fd(int n, int fd)
 {
-	WORD,
-	PIPE,
-	R_OUT,
-	R_IN,
-	AEPPEND,
-	HERDOK
-}	t_token_type;
-
-typedef struct s_token {
-    t_token_type type;
-    char *value;
-} t_token;
-
-typedef struct s_shell
-{
-	t_token *type;	
-} t_shell;
-
-char	**ft_split(char const *s, char c);
-
-#endif
+	if (fd < 0)
+		return ;
+	if (n < 0)
+	{
+		if (n == -2147483648)
+			write(fd, "-2147483648", 11);
+		else
+		{
+			ft_putchar_fd('-', fd);
+			ft_putnbr_fd(-n, fd);
+		}
+	}
+	else if (n < 10)
+	{
+		ft_putchar_fd(n + '0', fd);
+	}
+	else
+	{
+		ft_putnbr_fd((n / 10), fd);
+		ft_putnbr_fd((n % 10), fd);
+	}
+}

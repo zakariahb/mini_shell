@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 16:28:35 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/12 12:09:48 by zalaksya         ###   ########.fr       */
+/*   Created: 2024/11/05 07:52:19 by zalaksya          #+#    #+#             */
+/*   Updated: 2024/11/21 09:26:46 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_shell.h"
+#include "libft.h"
 
 static char	**ft_free(char **ft_split_res, int count)
 {
@@ -60,24 +60,6 @@ static int	count_word(char const *str, char c)
 	return (j);
 }
 
-static char	*ft_strndup(char const *str, size_t len)
-{
-	size_t	i;
-	char	*p;
-
-	i = 0;
-	p = malloc(len + 1);
-	if (!p)
-		return (NULL);
-	while (i < len)
-	{
-		p[i] = str[i];
-		i++;
-	}
-	p[i] = '\0';
-	return (p);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	int		i;
@@ -97,7 +79,7 @@ char	**ft_split(char const *s, char c)
 			i++;
 		if (!s[i])
 			break ;
-		p[index] = ft_strndup(&s[i], ft_strlenword((char *)&s[i], c));
+		p[index] = ft_substr(s, i, ft_strlenword((char *)&s[i], c));
 		if (!p[index])
 			return (ft_free(p, index));
 		i += ft_strlenword((char *)&s[i], c);

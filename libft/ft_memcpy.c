@@ -1,44 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_shell.h                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 14:41:54 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/13 08:55:20 by zalaksya         ###   ########.fr       */
+/*   Created: 2024/11/12 05:43:25 by zalaksya          #+#    #+#             */
+/*   Updated: 2024/11/21 09:36:11 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_SHELL_H
-#define MINI_SHELL_H
+#include "libft.h"
 
-
-#include "unistd.h"
-#include "string.h"
-#include "stdlib.h"
-#include "readline/readline.h"
-
-typedef enum e_token_type
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	WORD,
-	PIPE,
-	R_OUT,
-	R_IN,
-	AEPPEND,
-	HERDOK
-}	t_token_type;
+	size_t					i;
+	unsigned char			*des;
+	unsigned const char		*sr;
 
-typedef struct s_token {
-    t_token_type type;
-    char *value;
-} t_token;
-
-typedef struct s_shell
-{
-	t_token *type;	
-} t_shell;
-
-char	**ft_split(char const *s, char c);
-
-#endif
+	des = (unsigned char *)dest;
+	sr = (unsigned const char *)src;
+	i = 0;
+	if (des == sr)
+		return (des);
+	while (i < n)
+	{
+		des[i] = sr[i];
+		i++;
+	}
+	return (dest);
+}

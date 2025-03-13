@@ -1,44 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_shell.h                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 14:41:54 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/13 08:55:20 by zalaksya         ###   ########.fr       */
+/*   Created: 2024/11/01 12:01:28 by zalaksya          #+#    #+#             */
+/*   Updated: 2024/11/13 09:47:50 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_SHELL_H
-#define MINI_SHELL_H
+#include "libft.h"
 
-
-#include "unistd.h"
-#include "string.h"
-#include "stdlib.h"
-#include "readline/readline.h"
-
-typedef enum e_token_type
+char	*ft_strrchr(const char *str, int c)
 {
-	WORD,
-	PIPE,
-	R_OUT,
-	R_IN,
-	AEPPEND,
-	HERDOK
-}	t_token_type;
+	size_t	len;
 
-typedef struct s_token {
-    t_token_type type;
-    char *value;
-} t_token;
-
-typedef struct s_shell
-{
-	t_token *type;	
-} t_shell;
-
-char	**ft_split(char const *s, char c);
-
-#endif
+	len = ft_strlen(str);
+	while (len > 0)
+	{
+		if (str[len] == (char)c)
+			return ((char *)&str[len]);
+		len--;
+	}
+	if (str[len] == (char)c)
+		return ((char *)&str[len]);
+	return (NULL);
+}

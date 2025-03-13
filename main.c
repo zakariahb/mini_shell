@@ -6,11 +6,30 @@
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:49:50 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/09 14:51:02 by zalaksya         ###   ########.fr       */
+/*   Updated: 2025/03/13 08:57:52 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_shell.h"
+typedef enum e_token_type
+{
+	WORD,
+	PIPE,
+	R_OUT,
+	R_IN,
+	AEPPEND,
+	HERDOK,
+}	t_token_type;
+
+typedef struct s_token {
+    t_token_type type;
+    char *value;
+} t_token;
+
+typedef struct s_shell
+{
+	t_token *type;	
+} t_shell;
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -22,7 +41,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void find_qoute(char *str, t_shell *input)
+int find_qoute(char *str, t_shell *input)
 {
 	int	i;
 	int	j;
@@ -32,6 +51,7 @@ void find_qoute(char *str, t_shell *input)
 	while(str[i])
 	{
 		if (str[i] == '|' && str[i + 1] == '|' && str[i + 2] != '|')
+		{
 			input->or += 1;
 			j++;
 			if (j == 2)
@@ -47,7 +67,7 @@ void find_qoute(char *str, t_shell *input)
 int check_user_input(char **ar)
 {
 	int	i;
-	t_shell *input;
+	t_shell *input = NULL;
 	i = 0;
 	while(ar[i])
 	{
@@ -58,12 +78,33 @@ int check_user_input(char **ar)
 	}
 	return (0);
 }
+
+void create_tokens(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		while(str[i] && (str[i] == 32 || str[i] == '\t' || str[i] == '\n'))
+			i++;
+		if (str[i] == '|')
+			ft_strcpy()
+		
+	}
+	
+}
 int main (void)
 {
 	char *line = NULL;
-	line = readline("mini_shell>");
-	char **ar = ft_split(line ,' ');
-	if (check_user_input(ar))
-		return (write(2, "Error\n", 6),  1);
+	while ((line = readline("shell> ")))
+	{
+		add_history(line);
+	}
+	create_tokens(line); 
+	printf("line :%s\n",line);
+	// char **ar = ft_split(line ,'|');
+	// if (check_user_input(ar))
+	// 	return (1);
 	return (0);
 }
