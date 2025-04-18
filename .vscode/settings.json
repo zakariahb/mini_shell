@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"type_traits": "c",
+		"mini_shell.h": "c",
+		"unistd.h": "c"
+	}
+}

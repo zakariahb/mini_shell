@@ -6,7 +6,7 @@
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:28:35 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/12 12:09:48 by zalaksya         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:12:13 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,44 @@ static size_t	ft_strlenword(char *s, char c)
 	i = 0;
 	while (s[i] != c && s[i] != '\0')
 	{
-		len++;
+		len++; 
 		i++;
 	}
 	return (len);
 }
 
-static int	count_word(char const *str, char c)
+int ft_find(char c)
+{
+	char	*str;
+	int		i;
+	
+	i = 0;
+	str = " <>|";
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (0);
+		i++;
+	}
+	return (0);
+}
+static int	count_word(char const *str)
 {
 	int	i;
 	int	j;
 	int	k;
-
+	char *str;
+	str = " <>|";
 	i = 0;
 	j = 0;
 	k = 0;
 	while (str[i])
 	{
-		if (str[i] == c)
+		if (ft_strcmp(str[i] == c))
+		{
+			j++;
 			k = 0;
+		}
 		else if (k == 0)
 		{
 			k = 1;
@@ -59,7 +78,7 @@ static int	count_word(char const *str, char c)
 	}
 	return (j);
 }
-
+wdwqdwq
 static char	*ft_strndup(char const *str, size_t len)
 {
 	size_t	i;
@@ -78,7 +97,7 @@ static char	*ft_strndup(char const *str, size_t len)
 	return (p);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s)
 {
 	int		i;
 	int		index;
@@ -87,13 +106,17 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	p = (char **)malloc((count_word(s, c) + 1) * sizeof(char *));
+	p = (char **)malloc((count_word(s) + 1) * sizeof(char *));
 	if (!p)
 		return (NULL);
 	index = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i] == c)
+		while (s[i])
+		{
+			if (ft_find(s[i]))
+				p[index] = ft_strndup(&s[i], ft_strlenword((char *)&s[i], c));
+		}
 			i++;
 		if (!s[i])
 			break ;

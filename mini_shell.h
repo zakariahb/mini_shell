@@ -6,7 +6,7 @@
 /*   By: zalaksya <zalaksya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:41:54 by zalaksya          #+#    #+#             */
-/*   Updated: 2025/03/13 08:55:20 by zalaksya         ###   ########.fr       */
+/*   Updated: 2025/04/18 12:45:18 by zalaksya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "string.h"
 #include "stdlib.h"
 #include "readline/readline.h"
+#include "readline/history.h"
 
 typedef enum e_token_type
 {
@@ -39,6 +40,7 @@ typedef struct s_shell
 	t_token *type;	
 } t_shell;
 
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s);
+int	ft_strcmp(char *s1, char *s2);
 
 #endif
